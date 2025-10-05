@@ -12,6 +12,10 @@ This application provides a complete solution for customer churn prediction in t
 - **Advanced Analytics** with model evaluation and feature analysis
 - **Configurable Settings** for model parameters and thresholds
 
+## 🎥 Video Demo
+
+Watch the application in action: [Rwanda Banking Churn Prediction Demo](https://youtu.be/aJlLuOnMP_c)
+
 ## 📊 Model Performance Results
 
 ### Initial Model Metrics
