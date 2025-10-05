@@ -10,6 +10,7 @@ import {
   Phone,
   FileText
 } from 'lucide-react';
+import RealVisualizationCard from '../components/RealVisualizationCard';
 // import { MOCK_API_DELAY } from '../constants';
 
 const CustomerLookup = () => {
@@ -347,6 +348,33 @@ const CustomerLookup = () => {
           <p className="text-slate-500">Enter a customer ID, name, or email to view their churn prediction</p>
         </motion.div>
       )}
+
+      {/* Data Context Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-white border border-blue-200 rounded-xl p-6"
+      >
+        <h3 className="text-xl font-semibold text-black mb-6">Customer Data Context & Distributions</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <RealVisualizationCard
+            title="Age Distribution"
+            imagePath="/images/visualizations/age.jpg"
+            description="Customer age patterns showing multi-modal distribution with peaks around 20-25, 40-45, and 50-55 years."
+          />
+          <RealVisualizationCard
+            title="Account Balance Distribution"
+            imagePath="/images/visualizations/acc-balance.jpg"
+            description="Balance distribution across customer segments with peaks around 2M and 4.5M RWF."
+          />
+          <RealVisualizationCard
+            title="Mobile Banking Usage"
+            imagePath="/images/visualizations/mobile-banking.jpg"
+            description="Digital adoption patterns showing heavy concentration at maximum usage levels."
+          />
+        </div>
+      </motion.div>
     </div>
   );
 };
