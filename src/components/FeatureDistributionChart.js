@@ -19,24 +19,13 @@ ChartJS.register(
   Legend
 );
 
-const FeatureImportanceChart = () => {
-  const data = {
-    labels: [
-      'Gender_Male',
-      'Branch_Visits',
-      'Account_Type_Savings',
-      'Product_Usage',
-      'Customer_ID',
-      'Age',
-      'Mobile_Banking_Usage',
-      'Transaction_Frequency',
-      'Tenure',
-      'Total_Monthly_Spend'
-    ],
+const FeatureDistributionChart = ({ featureName, data }) => {
+  const chartData = {
+    labels: data.labels,
     datasets: [
       {
-        label: 'Importance Score',
-        data: [23.21, 17.55, 15.87, 15.00, 14.87, 14.00, 13.40, 13.10, 12.36, 12.12],
+        label: featureName,
+        data: data.values,
         backgroundColor: 'rgba(59, 130, 246, 0.8)',
         borderColor: 'rgba(59, 130, 246, 1)',
         borderWidth: 1,
@@ -49,7 +38,6 @@ const FeatureImportanceChart = () => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    indexAxis: 'y',
     plugins: {
       legend: {
         display: false,
@@ -62,37 +50,28 @@ const FeatureImportanceChart = () => {
         borderWidth: 1,
         cornerRadius: 8,
         displayColors: false,
-        callbacks: {
-          label: function(context) {
-            return `Importance: ${context.parsed.x.toFixed(2)}`;
-          }
-        }
       },
     },
     scales: {
       x: {
-        beginAtZero: true,
-        max: 25,
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)',
-        },
-        ticks: {
-          color: 'rgba(75, 85, 99, 0.8)',
-          callback: function(value) {
-            return `${value.toFixed(0)}`;
-          }
-        },
-      },
-      y: {
-        grid: {
-          display: false,
+          color: 'rgba(229, 231, 235, 0.3)',
         },
         ticks: {
           color: 'rgba(75, 85, 99, 0.8)',
           font: {
-            size: 11,
+            size: 10,
           },
         },
+      },
+      y: {
+        grid: {
+          color: 'rgba(229, 231, 235, 0.3)',
+        },
+        ticks: {
+          color: 'rgba(75, 85, 99, 0.8)',
+        },
+        beginAtZero: true,
       },
     },
     animation: {
@@ -103,10 +82,9 @@ const FeatureImportanceChart = () => {
 
   return (
     <div className="h-64">
-      <Bar data={data} options={options} />
+      <Bar data={chartData} options={options} />
     </div>
   );
 };
 
-export default FeatureImportanceChart;
-
+export default FeatureDistributionChart;

@@ -15,7 +15,7 @@ import {
   Calendar,
   Eye
 } from 'lucide-react';
-// import { RISK_THRESHOLDS, ACCOUNT_TYPES, AGE_GROUPS, TENURE_GROUPS, RISK_PROBABILITY_GROUPS } from '../constants';
+import { RISK_THRESHOLDS, ACCOUNT_TYPES, AGE_GROUPS, TENURE_GROUPS, RISK_PROBABILITY_GROUPS } from '../constants';
 
 // Mock data for retention list
 const customers = [

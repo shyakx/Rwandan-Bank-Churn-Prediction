@@ -1,207 +1,318 @@
-# Customer Churn Prediction System
+# Rwanda Banking Churn Prediction System
 
-A comprehensive React-based banking application for predicting and managing customer churn risk with an intuitive dashboard interface.
+A comprehensive machine learning application for predicting customer churn in the Rwandan banking sector. This system combines advanced data visualization with ensemble machine learning models to help banks identify at-risk customers and implement targeted retention strategies.
 
-## 🚀 Features
+## 🏦 Overview
 
-### 📊 Dashboard
-- **Key Metrics Overview**: Total customers, at-risk customers, average account balance, and tenure metrics
-- **Interactive Visualizations**: 
-  - Churn distribution pie chart
-  - Feature importance bar chart
-  - Monthly churn trends line chart
-  - Top risk customers table
-- **Real-time Analytics**: Live updates and trend analysis
-- **Quick Actions**: Direct access to search, retention list, and report generation
+This application provides a complete solution for customer churn prediction in the Rwandan banking context, featuring:
 
-### 🔍 Customer Lookup
-- **Advanced Search**: Search by Customer ID, name, or email with auto-complete
-- **Comprehensive Profile**: Customer details, account information, and product usage
-- **Risk Assessment**: 
-  - Churn probability with visual indicators
-  - Risk score visualization
-  - Color-coded risk levels (Critical, High, Medium, Low)
-- **Transaction Analysis**: Frequency, average value, mobile usage, and branch visits
-- **Complaint History**: Track and display customer service interactions
-- **Action Buttons**: Add to retention list, send email, call customer
+- **Real-time Dashboard** with key performance metrics
+- **Customer Lookup** with detailed risk assessment
+- **Retention Management** with bulk actions and filtering
+- **Advanced Analytics** with model evaluation and feature analysis
+- **Configurable Settings** for model parameters and thresholds
 
-### 👥 Retention List
-- **Advanced Filtering**: Filter by account type, age group, tenure, risk probability, and product usage
-- **Sortable Table**: Sort by any column with visual indicators
-- **Bulk Operations**: Select multiple customers for batch actions
-- **Export Functionality**: Download data as CSV
-- **Risk Visualization**: Progress bars and color-coded risk indicators
-- **Action Tools**: Email, SMS, and phone call capabilities
+## 📊 Model Performance Results
 
-### 📈 Reports & Analytics
-- **Multiple Report Types**:
-  - Overview Report: Key metrics and trends
-  - Demographics Analysis: Age and gender-based insights
-  - Product Usage Analysis: Churn by product type
-  - Trend Analysis: Historical and predictive trends
-- **Interactive Charts**: 
-  - Churn by demographics
-  - Product usage correlation
-  - Correlation heatmap
-  - Time-series analysis
-- **Downloadable Reports**: Export as PDF or images
-- **Period Selection**: 3 months, 6 months, 1 year, 2 years
+### Initial Model Metrics
+- **Accuracy**: 35.83%
+- **Precision**: 29.56%
+- **Recall**: 84.51%
+- **F1 Score**: 43.80%
 
-### ⚙️ Settings & Configuration
-- **Model Settings**:
-  - Adjustable churn prediction threshold
-  - Model sensitivity controls
-  - Feature selection toggles
-  - Retrain frequency settings
-- **Notification Preferences**:
-  - Email, SMS, and in-app notifications
-  - Customizable alert thresholds
-- **System Configuration**:
-  - Data retention policies
-  - Auto-backup settings
-  - API rate limits
-- **Security Settings**:
-  - Session timeout controls
-  - Multi-factor authentication
-  - Audit logging
-  - Security status monitoring
+### Adjusted Threshold Metrics (Optimized for Maximum Recall)
+- **Accuracy**: 29.58%
+- **Precision**: 29.58%
+- **Recall**: 100.0%
+- **F1 Score**: 45.66%
 
-## 🎨 Design Features
+### Confusion Matrix (Initial Model)
+```
+                 Predicted
+Actual     Negative  Positive
+Negative      26       143
+Positive      11        60
+```
 
-- **Darkened Blue Theme**: Professional banking interface with soft gradients
-- **Glassmorphism Effects**: Modern glass-like components with backdrop blur
-- **Smooth Animations**: Framer Motion animations for page transitions and interactions
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **Interactive Elements**: Hover effects, loading states, and smooth transitions
-- **Color-Coded Risk Indicators**: Intuitive visual feedback for risk levels
+### Confusion Matrix (Adjusted Threshold)
+```
+                 Predicted
+Actual     Negative  Positive
+Negative       0       169
+Positive       0        71
+```
 
-## 🛠️ Technology Stack
+## 🎯 Model Architecture
 
-- **Frontend**: React 18 with functional components and hooks
-- **Routing**: React Router DOM for navigation
-- **Styling**: Tailwind CSS with custom configuration
-- **Charts**: Chart.js with react-chartjs-2
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Build Tool**: Create React App
+### Ensemble Model
+- **Primary Model**: XGBoost Classifier
+- **Secondary Model**: Logistic Regression
+- **Ensemble Method**: Weighted combination for improved performance
 
-## 📦 Installation
+### Best Hyperparameters
+```python
+{
+    'colsample_bytree': 0.7,
+    'learning_rate': 0.01,
+    'max_depth': 3,
+    'n_estimators': 300,
+    'scale_pos_weight': 3,
+    'subsample': 0.7
+}
+```
 
-1. **Clone the repository**:
+### Model Optimization
+- **Threshold**: Adjusted to 0.3 for maximum recall
+- **Class Imbalance**: Handled using SMOTE oversampling and scale_pos_weight=3
+- **Feature Engineering**: 4 engineered features added for improved performance
+
+## 📈 Feature Importance Analysis
+
+The model identified the following top features influencing customer churn:
+
+| Rank | Feature | Importance Score |
+|------|---------|------------------|
+| 1 | Gender_Male | 23.21 |
+| 2 | Branch_Visits | 17.55 |
+| 3 | Account_Type_Savings | 15.87 |
+| 4 | Product_Usage | 15.00 |
+| 5 | Customer_ID | 14.87 |
+| 6 | Age | 14.00 |
+| 7 | Mobile_Banking_Usage | 13.40 |
+| 8 | Transaction_Frequency | 13.10 |
+| 9 | Tenure | 12.36 |
+| 10 | Total_Monthly_Spend | 12.12 |
+
+### Key Insights
+- **Gender_Male** shows the highest importance, suggesting gender-based behavioral patterns
+- **Branch_Visits** is the second most important feature, indicating physical branch interaction patterns
+- **Customer_ID** shows high importance, suggesting potential temporal patterns or data leakage
+- **Account_Type_Savings** indicates account type significantly influences churn probability
+
+## 🔧 Engineered Features
+
+The model includes four engineered features to improve predictive performance:
+
+1. **Total_Monthly_Spend**: Aggregated monthly spending patterns
+2. **Balance_to_Age_Ratio**: Account balance relative to customer age
+3. **Complaints_Per_Product**: Complaint frequency normalized by product usage
+4. **Mobile_App_Engagement_Ratio**: Mobile app usage relative to total banking activity
+
+## 📊 Data Distribution Analysis
+
+### Customer Demographics
+- **Total Customers**: 45,670
+- **Churn Rate**: 29.6%
+- **Retention Rate**: 70.4%
+- **Average Account Balance**: 1,250,000 RWF
+- **At-Risk Customers**: 13,520 (29.6% of total)
+
+### Feature Distributions
+- **Age**: Multi-modal distribution with peaks around 20-25, 40-45, and 50-55
+- **Account Balance**: Right-skewed distribution with most customers having lower balances
+- **Transaction Frequency**: Varied distribution with peaks at different frequency levels
+- **Product Usage**: Relatively uniform distribution across 1-5 usage levels
+- **Mobile Banking Usage**: Highly right-skewed with concentration at maximum usage (30)
+
+## 🎨 Application Features
+
+### Dashboard
+- Real-time churn metrics and trends
+- Customer risk distribution visualization
+- Feature importance analysis
+- Quick action buttons for common tasks
+
+### Customer Lookup
+- Individual customer risk assessment
+- Detailed transaction and engagement history
+- Churn probability scoring
+- Personalized retention recommendations
+
+### Retention Management
+- Bulk customer management
+- Advanced filtering and search
+- Export capabilities
+- Automated risk scoring
+
+### Analytics & Reports
+- Model performance evaluation
+- ROC Curve analysis (AUC = 0.46)
+- Precision-Recall curves
+- Confusion matrix visualization
+- Feature correlation analysis
+- Distribution analysis for all features
+
+### Settings
+- Model parameter configuration
+- Threshold adjustment
+- Feature selection
+- System preferences
+
+## 🚀 Technology Stack
+
+### Frontend
+- **React 18** - Modern UI framework
+- **Tailwind CSS** - Utility-first styling
+- **Framer Motion** - Smooth animations
+- **Chart.js** - Data visualization
+- **React Router** - Navigation
+
+### Machine Learning
+- **XGBoost** - Gradient boosting classifier
+- **Logistic Regression** - Linear classifier
+- **SMOTE** - Synthetic minority oversampling
+- **Scikit-learn** - ML utilities and metrics
+
+### Development Tools
+- **ESLint** - Code quality
+- **Prettier** - Code formatting
+- **Git** - Version control
+
+## 📦 Installation & Setup
+
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
+- Git
+
+### Installation Steps
+
+1. **Clone the repository**
    ```bash
-   cd "D:\Projects\Churn Prediction"
+   git clone https://github.com/shyakx/Rwandan-Bank-Churn-Prediction.git
+   cd Rwandan-Bank-Churn-Prediction
    ```
 
-2. **Install dependencies**:
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Start the development server**:
+3. **Start the development server**
    ```bash
    npm start
    ```
 
-4. **Open your browser** and navigate to `http://localhost:3000`
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-## 🏗️ Project Structure
-
-```
-src/
-├── components/           # Reusable UI components
-│   ├── Header.js        # Navigation header with BK logo
-│   ├── MetricCard.js    # Dashboard metric cards
-│   ├── ChurnDistributionChart.js
-│   ├── FeatureImportanceChart.js
-│   ├── MonthlyChurnTrendsChart.js
-│   ├── TopRiskCustomersTable.js
-│   ├── ChurnByDemographicsChart.js
-│   ├── ChurnTrendsChart.js
-│   ├── CorrelationHeatmap.js
-│   └── ChurnByProductChart.js
-├── pages/               # Main application pages
-│   ├── Dashboard.js     # Main dashboard with metrics
-│   ├── CustomerLookup.js # Customer search and analysis
-│   ├── RetentionList.js # At-risk customer management
-│   ├── Reports.js       # Analytics and reporting
-│   └── Settings.js      # System configuration
-├── App.js              # Main application component
-├── index.js            # Application entry point
-└── index.css           # Global styles and Tailwind imports
+### Production Build
+```bash
+npm run build
 ```
 
-## 🎯 Key Components
+## 🔍 Model Evaluation
 
-### Dashboard Components
-- **MetricCard**: Displays key performance indicators with trend indicators
-- **ChurnDistributionChart**: Pie chart showing churn vs retention rates
-- **FeatureImportanceChart**: Bar chart displaying model feature importance
-- **MonthlyChurnTrendsChart**: Line chart with predicted vs actual churn trends
-- **TopRiskCustomersTable**: Sortable table of highest risk customers
+### ROC Curve Analysis
+- **AUC Score**: 0.46
+- **Performance**: Below random chance (0.5)
+- **Interpretation**: Model requires significant improvement
 
-### Customer Lookup Components
-- Search functionality with real-time suggestions
-- Customer profile display with comprehensive information
-- Risk assessment visualization with progress bars
-- Transaction analysis and complaint history
+### Precision-Recall Analysis
+- **Initial Model**: Precision 29.6%, Recall 84.5%
+- **Adjusted Threshold**: Precision 29.6%, Recall 100%
+- **Trade-off**: High recall achieved at cost of precision
 
-### Retention List Features
-- Advanced filtering system
-- Sortable columns with visual indicators
-- Bulk selection and actions
-- Export functionality for data analysis
+### Recommendations for Improvement
+1. **Feature Engineering**: Develop more predictive features
+2. **Data Quality**: Address potential data leakage (Customer_ID importance)
+3. **Model Selection**: Consider alternative algorithms
+4. **Hyperparameter Tuning**: Further optimization needed
+5. **Data Collection**: Gather additional customer behavior data
 
-### Reports Components
-- Multiple chart types (bar, line, doughnut, heatmap)
-- Interactive data visualization
-- Downloadable report generation
-- Period-based data filtering
+## 🌍 Rwanda Banking Context
 
-## 🔧 Configuration
+### Localized Features
+- **Currency**: Rwandan Franc (RWF)
+- **Locations**: Rwandan cities and regions
+- **Demographics**: Rwandan population characteristics
+- **Banking Products**: Mobile Money, SACCO memberships
+- **Cultural Context**: Localized customer names and addresses
 
-The application uses Tailwind CSS with a custom configuration that includes:
-- Custom color palette with darkened blue theme
-- Animation keyframes for smooth transitions
-- Glassmorphism utilities
-- Responsive design utilities
+### Business Impact
+- **Revenue at Risk**: 2.4B RWF
+- **Customer Retention**: 70.4% retention rate
+- **Risk Management**: 13,520 at-risk customers identified
+- **Strategic Focus**: Mobile Money and SACCO partnerships
 
-## 🚀 Getting Started
+## 📝 Usage Guidelines
 
-1. **Navigate to the project directory**
-2. **Install all dependencies** using `npm install`
-3. **Start the development server** with `npm start`
-4. **Explore the application** through the different sections:
-   - Dashboard for overview metrics
-   - Customer Lookup for individual analysis
-   - Retention List for managing at-risk customers
-   - Reports for detailed analytics
-   - Settings for system configuration
+### For Bank Managers
+1. **Daily Monitoring**: Check dashboard for churn trends
+2. **Customer Intervention**: Use customer lookup for individual assessments
+3. **Bulk Actions**: Implement retention campaigns for high-risk segments
+4. **Performance Review**: Monitor model accuracy and adjust thresholds
 
-## 📱 Responsive Design
-
-The application is fully responsive and optimized for:
-- **Desktop**: Full feature set with multi-column layouts
-- **Tablet**: Adapted layouts with touch-friendly interactions
-- **Mobile**: Single-column layouts with mobile-optimized navigation
-
-## 🎨 Customization
-
-The application can be easily customized by modifying:
-- **Colors**: Update the Tailwind configuration in `tailwind.config.js`
-- **Animations**: Modify Framer Motion animations in components
-- **Charts**: Customize Chart.js configurations in chart components
-- **Layout**: Adjust component layouts and spacing
+### For Data Scientists
+1. **Model Evaluation**: Review ROC and Precision-Recall curves
+2. **Feature Analysis**: Study feature importance and correlations
+3. **Parameter Tuning**: Adjust model settings in the Settings page
+4. **Data Export**: Download reports for further analysis
 
 ## 🔮 Future Enhancements
 
-- Integration with real banking APIs
-- Machine learning model integration
-- Real-time data streaming
-- Advanced analytics and insights
-- Customer communication automation
-- A/B testing for retention campaigns
+### Model Improvements
+- [ ] Implement deep learning models
+- [ ] Add time-series analysis for temporal patterns
+- [ ] Develop ensemble methods with more algorithms
+- [ ] Create automated hyperparameter optimization
+
+### Feature Additions
+- [ ] Real-time data integration
+- [ ] Advanced customer segmentation
+- [ ] Predictive analytics for product recommendations
+- [ ] Integration with CRM systems
+
+### UI/UX Enhancements
+- [ ] Mobile-responsive design improvements
+- [ ] Advanced filtering and search capabilities
+- [ ] Customizable dashboard widgets
+- [ ] Real-time notifications and alerts
+
+## 📊 Performance Monitoring
+
+### Key Metrics to Track
+- **Model Accuracy**: Monitor prediction accuracy over time
+- **Business Impact**: Track retention rate improvements
+- **Customer Satisfaction**: Measure intervention effectiveness
+- **System Performance**: Monitor application response times
+
+### Regular Maintenance
+- **Weekly**: Review model performance metrics
+- **Monthly**: Update customer data and retrain models
+- **Quarterly**: Comprehensive model evaluation and improvement
+- **Annually**: Strategic review and technology updates
+
+## 🤝 Contributing
+
+We welcome contributions to improve the Rwanda Banking Churn Prediction System. Please follow these guidelines:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+3. **Make your changes**
+4. **Add tests if applicable**
+5. **Submit a pull request**
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Support
+
+For support and questions:
+- **Email**: support@rwandabankchurn.com
+- **Documentation**: [Wiki](https://github.com/shyakx/Rwandan-Bank-Churn-Prediction/wiki)
+- **Issues**: [GitHub Issues](https://github.com/shyakx/Rwandan-Bank-Churn-Prediction/issues)
+
+## 🙏 Acknowledgments
+
+- **Rwanda Banking Sector** for providing domain expertise
+- **Open Source Community** for the excellent tools and libraries
+- **Data Science Team** for model development and validation
+- **UI/UX Designers** for creating an intuitive interface
 
 ---
 
-**Built with ❤️ for banking professionals to effectively manage customer churn risk.**
+**Built with ❤️ for the Rwanda Banking Sector**
 
+*Empowering banks to predict, prevent, and manage customer churn through advanced machine learning and data visualization.*

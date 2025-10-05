@@ -37,7 +37,11 @@ const CustomerLookup = () => {
       frequency: 12.5,
       avgValue: 45000, // RWF
       mobileUsage: 95, // Higher mobile usage in Rwanda
-      branchVisits: 1
+      branchVisits: 1,
+      totalMonthlySpend: 562500, // frequency * avgValue
+      balanceToAgeRatio: 73529, // balance / age
+      complaintsPerProduct: 0.33, // complaintHistory / productUsage
+      mobileAppEngagementRatio: 7.6 // mobileBankingUsage / transactionFrequency
     },
     complaintHistory: [
       { date: '2024-01-15', type: 'Service', status: 'Resolved' },
@@ -272,6 +276,29 @@ const CustomerLookup = () => {
                 <div className="text-center">
                   <div className="text-2xl font-bold text-orange-400 mb-1">{selectedCustomer.transactionStats.branchVisits}</div>
                   <div className="text-gray-600 text-sm">Branch Visits</div>
+                </div>
+              </div>
+
+              {/* Engineered Features */}
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <h4 className="text-black font-medium mb-3">Engineered Features (Model Inputs)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600 mb-1">{selectedCustomer.transactionStats.totalMonthlySpend.toLocaleString()}</div>
+                    <div className="text-gray-600 text-sm">Total Monthly Spend (RWF)</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600 mb-1">{selectedCustomer.transactionStats.balanceToAgeRatio.toLocaleString()}</div>
+                    <div className="text-gray-600 text-sm">Balance to Age Ratio</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-600 mb-1">{selectedCustomer.transactionStats.complaintsPerProduct.toFixed(2)}</div>
+                    <div className="text-gray-600 text-sm">Complaints Per Product</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-orange-600 mb-1">{selectedCustomer.transactionStats.mobileAppEngagementRatio.toFixed(1)}</div>
+                    <div className="text-gray-600 text-sm">Mobile App Engagement</div>
+                  </div>
                 </div>
               </div>
             </div>

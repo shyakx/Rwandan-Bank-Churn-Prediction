@@ -26,32 +26,38 @@ const CorrelationHeatmap = () => {
   const getColor = (value) => {
     const absValue = Math.abs(value);
     if (absValue >= 0.7) {
-      return value > 0 ? 'bg-blue-600' : 'bg-red-600';
+      return value > 0 ? 'bg-blue-600' : 'bg-red-500';
     } else if (absValue >= 0.5) {
-      return value > 0 ? 'bg-blue-500' : 'bg-red-500';
+      return value > 0 ? 'bg-blue-500' : 'bg-red-400';
     } else if (absValue >= 0.3) {
-      return value > 0 ? 'bg-blue-400' : 'bg-red-400';
+      return value > 0 ? 'bg-blue-400' : 'bg-red-300';
     } else if (absValue >= 0.1) {
-      return value > 0 ? 'bg-blue-300' : 'bg-red-300';
+      return value > 0 ? 'bg-blue-200' : 'bg-red-200';
     } else {
-      return 'bg-slate-600';
+      return 'bg-gray-200';
     }
   };
 
   const getTextColor = (value) => {
     const absValue = Math.abs(value);
-    return absValue >= 0.3 ? 'text-white' : 'text-slate-400';
+    if (absValue >= 0.5) {
+      return 'text-white';
+    } else if (absValue >= 0.3) {
+      return 'text-white';
+    } else {
+      return 'text-gray-700';
+    }
   };
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <div className="bg-slate-800/50 rounded-lg p-6 max-w-full overflow-x-auto">
-        <div className="min-w-max">
+    <div className="h-full w-full overflow-auto">
+      <div className="bg-white border border-gray-200 rounded-lg p-4 min-w-full">
+        <div className="overflow-x-auto">
           {/* Header row */}
-          <div className="flex">
-            <div className="w-24 h-8"></div> {/* Empty corner */}
+          <div className="flex min-w-max">
+            <div className="w-20 h-6 flex-shrink-0"></div> {/* Empty corner */}
             {features.map((feature, index) => (
-              <div key={index} className="w-16 h-8 flex items-center justify-center text-xs text-slate-400 font-medium transform -rotate-45 origin-center">
+              <div key={index} className="w-12 h-6 flex items-center justify-center text-xs text-gray-600 font-medium transform -rotate-45 origin-center flex-shrink-0">
                 {feature.split(' ')[0]}
               </div>
             ))}
@@ -59,9 +65,9 @@ const CorrelationHeatmap = () => {
 
           {/* Data rows */}
           {features.map((feature, rowIndex) => (
-            <div key={rowIndex} className="flex">
+            <div key={rowIndex} className="flex min-w-max">
               {/* Feature label */}
-              <div className="w-24 h-12 flex items-center text-xs text-slate-300 font-medium pr-2">
+              <div className="w-20 h-10 flex items-center text-xs text-gray-700 font-medium pr-2 flex-shrink-0">
                 {feature}
               </div>
               
@@ -69,7 +75,7 @@ const CorrelationHeatmap = () => {
               {correlationMatrix[rowIndex].map((value, colIndex) => (
                 <div
                   key={colIndex}
-                  className={`w-16 h-12 flex items-center justify-center text-xs font-medium ${getColor(value)} ${getTextColor(value)} rounded-sm mx-0.5`}
+                  className={`w-12 h-10 flex items-center justify-center text-xs font-medium ${getColor(value)} ${getTextColor(value)} rounded-sm mx-0.5 flex-shrink-0`}
                   title={`${features[rowIndex]} vs ${features[colIndex]}: ${value.toFixed(2)}`}
                 >
                   {Math.abs(value) >= 0.1 ? value.toFixed(2) : ''}
@@ -79,26 +85,26 @@ const CorrelationHeatmap = () => {
           ))}
 
           {/* Color legend */}
-          <div className="mt-6 flex items-center justify-center space-x-4 text-xs text-slate-400">
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-red-600 rounded"></div>
-              <span>Strong Negative</span>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-gray-600">
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 bg-red-500 rounded"></div>
+              <span>Strong -</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-red-400 rounded"></div>
-              <span>Moderate Negative</span>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 bg-red-400 rounded"></div>
+              <span>Mod -</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-slate-600 rounded"></div>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 bg-gray-200 rounded"></div>
               <span>Weak</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-blue-400 rounded"></div>
-              <span>Moderate Positive</span>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 bg-blue-400 rounded"></div>
+              <span>Mod +</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-blue-600 rounded"></div>
-              <span>Strong Positive</span>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 bg-blue-600 rounded"></div>
+              <span>Strong +</span>
             </div>
           </div>
         </div>

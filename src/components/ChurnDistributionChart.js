@@ -6,7 +6,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-// import { CHART_COLORS, CHART_COLORS_SOLID, ANIMATION_DURATION } from '../constants';
+import { CHART_COLORS, CHART_COLORS_SOLID, ANIMATION_DURATION } from '../constants';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -17,17 +17,17 @@ const ChurnDistributionChart = ({ churnRate, retentionRate }) => {
       {
         data: [churnRate, retentionRate],
         backgroundColor: [
-          'rgba(239, 68, 68, 0.8)', // red-500
-          'rgba(34, 197, 94, 0.8)',  // green-500
+          CHART_COLORS.RED,
+          CHART_COLORS.GREEN,
         ],
         borderColor: [
-          'rgba(239, 68, 68, 1)',   // red-500
-          'rgba(34, 197, 94, 1)',   // green-500
+          CHART_COLORS_SOLID.RED,
+          CHART_COLORS_SOLID.GREEN,
         ],
         borderWidth: 2,
         hoverBackgroundColor: [
-          'rgba(239, 68, 68, 0.9)',
-          'rgba(34, 197, 94, 0.9)',
+          CHART_COLORS.RED.replace('0.8', '0.9'),
+          CHART_COLORS.GREEN.replace('0.8', '0.9'),
         ],
       },
     ],
@@ -63,7 +63,7 @@ const ChurnDistributionChart = ({ churnRate, retentionRate }) => {
     animation: {
       animateRotate: true,
       animateScale: true,
-      duration: 1000,
+      duration: ANIMATION_DURATION,
     },
   };
 
@@ -73,8 +73,8 @@ const ChurnDistributionChart = ({ churnRate, retentionRate }) => {
         <Pie data={data} options={options} />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">{churnRate}%</div>
-            <div className="text-sm text-slate-400">Churn Risk</div>
+            <div className="text-2xl font-bold text-black">{churnRate}%</div>
+            <div className="text-sm text-gray-600">Churn Risk</div>
           </div>
         </div>
       </div>

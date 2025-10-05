@@ -19,7 +19,7 @@ import { API_SETTINGS } from '../constants';
 const Settings = () => {
   const [settings, setSettings] = useState({
     // Model Settings
-    churnThreshold: 0.75,
+    churnThreshold: 0.3, // Actual threshold from Colab notebook
     modelSensitivity: 0.5,
     retrainFrequency: 'weekly',
     featureSelection: {
@@ -30,7 +30,11 @@ const Settings = () => {
       creditScore: true,
       productUsage: true,
       mobileBanking: true,
-      branchVisits: true
+      branchVisits: true,
+      totalMonthlySpend: true, // Engineered feature
+      balanceToAgeRatio: true, // Engineered feature
+      complaintsPerProduct: true, // Engineered feature
+      mobileAppEngagementRatio: true // Engineered feature
     },
     
     // Notification Settings

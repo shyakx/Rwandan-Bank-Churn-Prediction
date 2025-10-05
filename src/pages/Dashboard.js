@@ -19,11 +19,11 @@ const Dashboard = () => {
   // Mock data - in a real app, this would come from an API
   const metrics = {
     totalCustomers: 45678,
-    atRiskCustomers: 2341,
+    atRiskCustomers: 13520, // 29.6% of total customers
     avgAccountBalance: 1250000, // RWF (Rwandan Franc)
     avgTenure: 3.2,
-    churnRate: 5.12,
-    retentionRate: 94.88
+    churnRate: 29.6, // Actual churn rate from model
+    retentionRate: 70.4 // 100 - 29.6
   };
 
   const containerVariants = {
@@ -130,7 +130,7 @@ const Dashboard = () => {
           <div className="bg-white border border-blue-200 rounded-xl p-6 h-96">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-black">Feature Importance</h3>
-              <span className="text-sm text-gray-600">Random Forest Model</span>
+              <span className="text-sm text-gray-600">XGBoost + Logistic Regression Ensemble</span>
             </div>
             <FeatureImportanceChart />
           </div>
