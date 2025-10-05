@@ -16,37 +16,37 @@ const ColabVisualizationGallery = () => {
     {
       id: 'account-balance-distribution',
       title: 'Distribution of Account Balance',
-      imagePath: '/images/visualizations/acc balance.jpg',
+      imagePath: '/images/visualizations/acc-balance.jpg',
       description: 'Account balance distribution showing a multimodal pattern with peaks around 2M and 4.5M RWF. Most customers have balances between 0-45M RWF with varying frequencies.'
     },
     {
       id: 'transaction-frequency-distribution',
       title: 'Distribution of Transaction Frequency',
-      imagePath: '/images/visualizations/txn frequency.jpg',
+      imagePath: '/images/visualizations/txn-frequency.jpg',
       description: 'Transaction frequency distribution ranging from 0-50 transactions. Shows multiple peaks with the highest frequency around 48-50 transactions, indicating active users.'
     },
     {
       id: 'average-transaction-value-distribution',
       title: 'Distribution of Average Transaction Value',
-      imagePath: '/images/visualizations/transaction value.jpg',
+      imagePath: '/images/visualizations/transaction-value.jpg',
       description: 'Average transaction value distribution from 0-500K RWF. The distribution is right-skewed with a prominent peak around 350K RWF, showing most transactions are in the lower value range.'
     },
     {
       id: 'complaint-history-distribution',
       title: 'Distribution of Complaint History',
-      imagePath: '/images/visualizations/complaint history.jpg',
+      imagePath: '/images/visualizations/complaint-history.jpg',
       description: 'Complaint history distribution from 0-5 complaints. Shows relatively uniform distribution with slight variations, indicating consistent complaint patterns across customers.'
     },
     {
       id: 'mobile-banking-usage-distribution',
       title: 'Distribution of Mobile Banking Usage',
-      imagePath: '/images/visualizations/mobile banking.jpg',
+      imagePath: '/images/visualizations/mobile-banking.jpg',
       description: 'Mobile banking usage distribution from 0-30. Highly right-skewed with a massive peak at maximum usage (30), indicating heavy mobile banking adoption.'
     },
     {
       id: 'branch-visits-distribution',
       title: 'Distribution of Branch Visits',
-      imagePath: '/images/visualizations/branch visit.jpg',
+      imagePath: '/images/visualizations/branch-visit.jpg',
       description: 'Branch visits distribution from 0-10 visits. Shows varied patterns with peaks at 0, 8, and 9 visits, indicating different customer interaction preferences.'
     },
     {
@@ -58,13 +58,13 @@ const ColabVisualizationGallery = () => {
     {
       id: 'total-monthly-spend-distribution',
       title: 'Distribution of Total Monthly Spend',
-      imagePath: '/images/visualizations/total motnly spend.jpg',
+      imagePath: '/images/visualizations/total-monthly-spend.jpg',
       description: 'Total monthly spend distribution from 0-25M RWF. Heavily right-skewed with most customers having low monthly spend and a long tail of high spenders.'
     },
     {
       id: 'balance-to-age-ratio-distribution',
       title: 'Distribution of Balance to Age Ratio',
-      imagePath: '/images/visualizations/balance to age.jpg',
+      imagePath: '/images/visualizations/balance-to-age.jpg',
       description: 'Balance to age ratio distribution from 0-2.5M. Heavily right-skewed with peak around 0.5-0.6M, showing most customers have lower ratios.'
     },
     {
@@ -76,31 +76,31 @@ const ColabVisualizationGallery = () => {
     {
       id: 'mobile-app-engagement-ratio-distribution',
       title: 'Distribution of Mobile App Engagement Ratio',
-      imagePath: '/images/visualizations/APP ENGAGMENT.jpg',
+      imagePath: '/images/visualizations/app-engagement.jpg',
       description: 'Mobile app engagement ratio distribution from 0-30. Extremely right-skewed with massive concentration at very low values, indicating low mobile app engagement overall.'
     },
     {
       id: 'churn-distribution',
       title: 'Churn Distribution',
-      imagePath: '/images/visualizations/CHURN DISTRIBUTION.jpg',
+      imagePath: '/images/visualizations/churn-distribution.jpg',
       description: 'Binary churn distribution showing class imbalance. Category 0 (no churn) has ~840-850 instances while Category 1 (churn) has ~350-360 instances, indicating a 29.6% churn rate.'
     },
     {
       id: 'feature-correlations',
       title: 'Feature Correlations Heatmap',
-      imagePath: '/images/visualizations/FEATURE COLLETION.jpg',
+      imagePath: '/images/visualizations/feature-correlations.jpg',
       description: 'Pearson correlation matrix showing relationships between 17 features. Strong positive correlations between Total_Monthly_Spend and Transaction_Frequency (0.68), and strong negative correlations between Age and Balance_to_Age_Ratio (-0.53).'
     },
     {
       id: 'feature-importance',
       title: 'Top Features Influencing Churn',
-      imagePath: '/images/visualizations/TOP FEATURES INFLUENCING CHURN.jpg',
+      imagePath: '/images/visualizations/feature-importance.jpg',
       description: 'Feature importance analysis showing Gender_Male (23.21) as the most important feature, followed by Branch_Visits (17.55) and Account_Type_Savings (15.87). Customer_ID shows high importance (14.87), suggesting potential data leakage.'
     },
     {
       id: 'roc-curve',
       title: 'ROC Curve',
-      imagePath: '/images/visualizations/ROC CURVE.jpg',
+      imagePath: '/images/visualizations/roc-curve.jpg',
       description: 'ROC curve showing model performance with AUC = 0.46. The curve lies below the random classifier line, indicating poor discriminative ability - worse than random chance (0.5).'
     }
   ];
