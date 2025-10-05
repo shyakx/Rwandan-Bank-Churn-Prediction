@@ -170,10 +170,10 @@ const Reports = () => {
             </div>
           </div>
 
-          {/* Churn Trends */}
+          {/* Churn Distribution - Real Data */}
           <div className="bg-white border border-blue-200 rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-black">Churn Trends Over Time</h3>
+              <h3 className="text-xl font-semibold text-black">Churn Distribution Analysis</h3>
               <button
                 onClick={() => handleDownloadReport('image')}
                 className="flex items-center space-x-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-black rounded-lg transition-colors"
@@ -182,9 +182,12 @@ const Reports = () => {
                 <span className="text-sm">Export</span>
               </button>
             </div>
-            <div className="h-80">
-              <ChurnTrendsChart period={selectedPeriod} />
-            </div>
+            <RealVisualizationCard
+              title="Churn Distribution"
+              imagePath="/images/visualizations/churn-distribution.jpg"
+              description="Binary churn distribution showing class imbalance. Category 0 (no churn) has ~840-850 instances while Category 1 (churn) has ~350-360 instances, indicating a 29.6% churn rate."
+              className="mb-4"
+            />
           </div>
 
           {/* Model Performance Summary */}
@@ -226,7 +229,7 @@ const Reports = () => {
             </div>
           </div>
 
-          {/* Correlation Heatmap */}
+          {/* Feature Correlation Matrix - Real Data */}
           <div className="bg-white border border-blue-200 rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-black">Feature Correlation Matrix</h3>
@@ -238,20 +241,18 @@ const Reports = () => {
                 <span className="text-sm">Export</span>
               </button>
             </div>
-            <div className="h-80">
-              <CorrelationHeatmap />
-            </div>
+            <RealVisualizationCard
+              title="Feature Correlations"
+              imagePath="/images/visualizations/feature-correlations.jpg"
+              description="Pearson correlation matrix showing relationships between 17 features. Strong positive correlations between Total_Monthly_Spend and Transaction_Frequency (0.68), and strong negative correlations between Age and Balance_to_Age_Ratio (-0.53)."
+              className="mb-4"
+            />
           </div>
 
-          {/* Real Data Visualizations from Colab Analysis */}
+          {/* Additional Model Insights */}
           <div className="bg-white border border-blue-200 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-black mb-6">Key Data Insights from Colab Analysis</h3>
+            <h3 className="text-xl font-semibold text-black mb-6">Additional Model Performance Insights</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <RealVisualizationCard
-                title="Churn Distribution"
-                imagePath="/images/visualizations/churn-distribution.jpg"
-                description="Shows the class imbalance with 29.6% churn rate (350-360 churned vs 840-850 retained customers)."
-              />
               <RealVisualizationCard
                 title="Feature Importance Analysis"
                 imagePath="/images/visualizations/feature-importance.jpg"
@@ -261,11 +262,6 @@ const Reports = () => {
                 title="ROC Curve Performance"
                 imagePath="/images/visualizations/roc-curve.jpg"
                 description="Model shows poor discriminative ability with AUC = 0.46, indicating need for significant improvement."
-              />
-              <RealVisualizationCard
-                title="Feature Correlations"
-                imagePath="/images/visualizations/feature-correlations.jpg"
-                description="Strong correlations between Total_Monthly_Spend and Transaction_Frequency (0.68)."
               />
             </div>
           </div>
