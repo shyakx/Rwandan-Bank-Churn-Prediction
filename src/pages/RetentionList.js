@@ -20,7 +20,7 @@ import { RISK_THRESHOLDS, ACCOUNT_TYPES, AGE_GROUPS, TENURE_GROUPS, RISK_PROBABI
 // Mock data for retention list
 const customers = [
     {
-      id: 'CUST001',
+      id: '1000001',
       name: 'Mukamana Grace',
       accountType: 'Premium',
       balance: 2500000, // RWF
@@ -32,7 +32,7 @@ const customers = [
       lastActivity: '2 days ago'
     },
     {
-      id: 'CUST002',
+      id: '1000002',
       name: 'Nkurunziza Jean',
       accountType: 'Standard',
       balance: 650000, // RWF
@@ -44,7 +44,7 @@ const customers = [
       lastActivity: '5 days ago'
     },
     {
-      id: 'CUST003',
+      id: '1000003',
       name: 'Uwimana Marie',
       accountType: 'Premium',
       balance: 4200000, // RWF
@@ -56,7 +56,7 @@ const customers = [
       lastActivity: '1 day ago'
     },
     {
-      id: 'CUST004',
+      id: '1000004',
       name: 'Mugisha Paul',
       accountType: 'Basic',
       balance: 300000, // RWF
@@ -68,7 +68,7 @@ const customers = [
       lastActivity: '3 days ago'
     },
     {
-      id: 'CUST005',
+      id: '1000005',
       name: 'Nyiraneza Claire',
       accountType: 'Premium',
       balance: 1200000, // RWF
@@ -80,7 +80,7 @@ const customers = [
       lastActivity: '4 days ago'
     },
     {
-      id: 'CUST006',
+      id: '1000006',
       name: 'Habyarimana Joseph',
       accountType: 'Standard',
       balance: 800000, // RWF
@@ -92,7 +92,7 @@ const customers = [
       lastActivity: '6 days ago'
     },
     {
-      id: 'CUST007',
+      id: '1000007',
       name: 'Mukamana Jennifer',
       accountType: 'Premium',
       balance: 1700000, // RWF
@@ -104,7 +104,7 @@ const customers = [
       lastActivity: '2 days ago'
     },
     {
-      id: 'CUST008',
+      id: '1000008',
       name: 'James Wilson',
       accountType: 'Basic',
       balance: 8900,

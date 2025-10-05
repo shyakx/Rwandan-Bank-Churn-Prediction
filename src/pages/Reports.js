@@ -17,6 +17,7 @@ import ConfusionMatrixChart from '../components/ConfusionMatrixChart';
 import FeatureDistributionChart from '../components/FeatureDistributionChart';
 import FeatureImportanceChart from '../components/FeatureImportanceChart';
 import ColabVisualizationGallery from '../components/ColabVisualizationGallery';
+import RealVisualizationCard from '../components/RealVisualizationCard';
 
 const Reports = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('6months');
@@ -239,6 +240,33 @@ const Reports = () => {
             </div>
             <div className="h-80">
               <CorrelationHeatmap />
+            </div>
+          </div>
+
+          {/* Real Data Visualizations from Colab Analysis */}
+          <div className="bg-white border border-blue-200 rounded-xl p-6">
+            <h3 className="text-xl font-semibold text-black mb-6">Key Data Insights from Colab Analysis</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <RealVisualizationCard
+                title="Churn Distribution"
+                imagePath="/images/visualizations/churn-distribution.jpg"
+                description="Shows the class imbalance with 29.6% churn rate (350-360 churned vs 840-850 retained customers)."
+              />
+              <RealVisualizationCard
+                title="Feature Importance Analysis"
+                imagePath="/images/visualizations/feature-importance.jpg"
+                description="Gender_Male (23.21) and Branch_Visits (17.55) are the most predictive features for churn prediction."
+              />
+              <RealVisualizationCard
+                title="ROC Curve Performance"
+                imagePath="/images/visualizations/roc-curve.jpg"
+                description="Model shows poor discriminative ability with AUC = 0.46, indicating need for significant improvement."
+              />
+              <RealVisualizationCard
+                title="Feature Correlations"
+                imagePath="/images/visualizations/feature-correlations.jpg"
+                description="Strong correlations between Total_Monthly_Spend and Transaction_Frequency (0.68)."
+              />
             </div>
           </div>
         </motion.div>

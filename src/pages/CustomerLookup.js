@@ -20,7 +20,7 @@ const CustomerLookup = () => {
 
   // Mock customer data
   const mockCustomer = {
-    id: 'CUST001',
+    id: '1000001',
     name: 'Mukamana Grace',
     email: 'grace.mukamana@email.com',
     phone: '+250 788 123 456',

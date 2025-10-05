@@ -110,27 +110,27 @@ The model includes four engineered features to improve predictive performance:
 ### Feature Distributions
 
 #### Age Distribution
-![Age Distribution](public/images/visualizations/age.jpg)
+![Age Distribution](./public/images/visualizations/age.jpg)
 *Multi-modal distribution with peaks around ages 20-25, 40-45, and 50-55, indicating different customer segments.*
 
 #### Account Balance Distribution
-![Account Balance Distribution](public/images/visualizations/acc-balance.jpg)
+![Account Balance Distribution](./public/images/visualizations/acc-balance.jpg)
 *Account balance distribution showing a multimodal pattern with peaks around 2M and 4.5M RWF. Most customers have balances between 0-45M RWF with varying frequencies.*
 
 #### Transaction Frequency Distribution
-![Transaction Frequency Distribution](public/images/visualizations/txn-frequency.jpg)
+![Transaction Frequency Distribution](./public/images/visualizations/txn-frequency.jpg)
 *Transaction frequency distribution ranging from 0-50 transactions. Shows multiple peaks with the highest frequency around 48-50 transactions, indicating active users.*
 
 #### Average Transaction Value Distribution
-![Average Transaction Value Distribution](public/images/visualizations/transaction-value.jpg)
+![Average Transaction Value Distribution](./public/images/visualizations/transaction-value.jpg)
 *Average transaction value distribution from 0-500K RWF. The distribution is right-skewed with a prominent peak around 350K RWF, showing most transactions are in the lower value range.*
 
 #### Mobile Banking Usage Distribution
-![Mobile Banking Usage Distribution](public/images/visualizations/mobile-banking.jpg)
+![Mobile Banking Usage Distribution](./public/images/visualizations/mobile-banking.jpg)
 *Mobile banking usage distribution from 0-30. Highly right-skewed with a massive peak at maximum usage (30), indicating heavy mobile banking adoption.*
 
 #### Churn Distribution
-![Churn Distribution](public/images/visualizations/churn-distribution.jpg)
+![Churn Distribution](./public/images/visualizations/churn-distribution.jpg)
 *Binary churn distribution showing class imbalance. Category 0 (no churn) has ~840-850 instances while Category 1 (churn) has ~350-360 instances, indicating a 29.6% churn rate.*
 
 ## 📈 Complete Visualization Gallery
@@ -248,17 +248,17 @@ npm run build
 ## 🔍 Model Evaluation
 
 ### ROC Curve Analysis
-![ROC Curve](public/images/visualizations/roc-curve.jpg)
+![ROC Curve](./public/images/visualizations/roc-curve.jpg)
 - **AUC Score**: 0.46
 - **Performance**: Below random chance (0.5)
 - **Interpretation**: Model requires significant improvement
 
 ### Feature Importance Analysis
-![Feature Importance](public/images/visualizations/feature-importance.jpg)
+![Feature Importance](./public/images/visualizations/feature-importance.jpg)
 *Feature importance analysis showing Gender_Male (23.21) as the most important feature, followed by Branch_Visits (17.55) and Account_Type_Savings (15.87). Customer_ID shows high importance (14.87), suggesting potential data leakage.*
 
 ### Feature Correlations
-![Feature Correlations](public/images/visualizations/feature-correlations.jpg)
+![Feature Correlations](./public/images/visualizations/feature-correlations.jpg)
 *Pearson correlation matrix showing relationships between 17 features. Strong positive correlations between Total_Monthly_Spend and Transaction_Frequency (0.68), and strong negative correlations between Age and Balance_to_Age_Ratio (-0.53).*
 
 ### Precision-Recall Analysis
